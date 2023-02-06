@@ -1,5 +1,10 @@
 > **CONTENT**
-
+- [2023-02-03 - Release 6.0.0](#2023-02-03---release-600)
+  - [Highlights](#highlights)
+  - [Details](#details)
+    - [Changes](#changes)
+    - [Bug Fixes](#bug-fixes)
+  - [Contributions](#contributions)
 - [2021-11-08 - Release 5.0.0](#2021-11-08---release-500)
   - [Highlights](#highlights)
   - [Details](#details)
@@ -23,6 +28,52 @@
   - [Details - 3.0.0](#details---300)
     - [New folder structure](#new-folder-structure)
     - [Retired deployment scenarios](#retired-deployment-scenarios)
+
+## 2023-02-03 - Release 6.0.0
+
+### Highlights
+
+1. Updates the code to .NET 6.0
+
+### Details
+
+  #### Changes
+
+  - Updates the code to .NET 6.0
+  - Updates the dotnet sdk tag in Dockerfiles
+  - Updated `Envoy` version to 1.22.0
+  - Created `GlobalUsings.cs` and migrate using statements to these files for all projects
+  - Removes language preview version from csproj
+  - Update credit card `Expiration` date
+  - `WebSPA` project related changes:
+  - Updates packages in `package-lock.json` file in WebSPA project.
+  - Updates following `Readme` files to incorporate latest instructions:
+    - `README.md` file.
+    - `branch-guide.md` file.
+    - `CONTRIBUTING.md`
+  - Contains following updates in `eShopOnContainers` wiki:
+    - Updates the System-requirements page.
+    - Docker-compose-deployment-files
+    - Updates the steps for Windows-setup
+    - Updates to the docker version images and VS 2022 installation images.
+    - Updates to Deploy to Local Kubernetes page
+    - Updates the section to describe how to run WebSPA project via Visual Studio 2022 in debug mode.
+    - Updated the broken links
+    
+  #### Bug Fixes
+
+  - Fixes ingress yaml indentation
+  - Fixes for bundleconfig json
+  - Fixes a few typos in fields name, documentation, and refactoring.
+
+
+  ### Contributions
+
+  We’d like to acknowledge and thank the following community members for their valuable contributions!
+
+  @marranica, @Ich1goSan, @onurkanbakirci
+
+
 
 ## 2021-11-08 - Release 5.0.0
 
