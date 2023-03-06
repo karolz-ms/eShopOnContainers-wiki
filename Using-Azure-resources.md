@@ -43,7 +43,7 @@ Do not forget to put a slash character '/' in the end of the URL.
 For example:
 >ESHOP_AZURE_STORAGE_CATALOG=https://yourcatalogstorageaccountservice.blob.core.windows.net/yourcontainername/
 
-To use Azure Storage, you can refer to [comment](https://github.com/dotnet-architecture/eShopOnContainers/issues/2047#issuecomment-1437084043) answered in issue.
+To use Azure Storage, you can refer to [comment](https://github.com/dotnet-architecture/eShopOnContainers/issues/2047#issuecomment-1437084043) answered in one of the issue.
 
 ## Check status of Azure Storage Account with Health Checks
 
