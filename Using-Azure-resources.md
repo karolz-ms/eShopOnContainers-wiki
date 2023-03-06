@@ -30,24 +30,24 @@ To enable the service bus of Azure in eShop solution it is necessary having crea
 For example:
 >ESHOP_AZURE_SERVICE_BUS=Endpoint=sb://yourservicebusservice.servicebus.windows.net/;SharedAccessKeyName=Root;SharedAccessKey=yourtopicpolicykey=;EntityPath=eshop_event_bus
 
-Once the service bus service is created, it is necessary to set to true the "AzureServiceBusEnabled" environment variable from `settings.json` file on Catalog.API, Ordering.API, Basket.API, Payment.API, GracePeriodManager, Marketing.API and Locations.API.
+Once the service bus service is created, it is necessary to set to true the "AzureServiceBusEnabled" environment variable from the `appsettings.json` file on Catalog.API, Ordering.API, Basket.API, Payment.API, GracePeriodManager, Marketing.API and Locations.API.
 
 With the steps explained in the next section, you will be able to run the application with Azure Storage Account instead of the local container storage.
 
 # Azure Storage Account service
 
-To enable Azure storage of Azure in eShopOnContainers solution it is necessary having created previously the storage service through ARM file or manually through Azure portal. You can use the ARM files find under **deploy/az/storage** folder already created in eShop. Once the storage account is created, it is very important to create a new container(blob kind) and upload the solution catalog pics files before to continue. Later, it is necessary to set to true the "AzureStorageEnabled" environment variable from `appsettings.json` in `Catalog.API`, `docker-compose.override.yml` and `docker-compose.prod.yml`. Finally, it is necessary to get the container endpoint url from information service in the Azure portal. This url must be declared on .env file located in the solution root folder with `ESHOP_AZURE_STORAGE_CATALOG` for the Catalog.API content.
+To enable Azure storage of Azure in the eShopOnContainers solution it is necessary having created previously the storage service through ARM file or manually through the Azure portal. You can use the ARM files find under **deploy/az/storage** folder already created in eShop. Once the storage account is created, it is very important to create a new container(blob kind) and upload the solution catalog pics files before to continue. Later, it is necessary to set to true the "AzureStorageEnabled" environment variable from `appsettings.json` in `Catalog.API`, `docker-compose.override.yml` and `docker-compose.prod.yml`. Finally, it is necessary to get the container endpoint url from information service in the Azure portal. This url must be declared on .env file located in the solution root folder with `ESHOP_AZURE_STORAGE_CATALOG` for the Catalog.API content.
 
-Do not forget to put a slash character '/' in the end of the URL.
+Do not forget to put a slash character '/' at the end of the URL.
 
 For example:
 >ESHOP_AZURE_STORAGE_CATALOG=https://yourcatalogstorageaccountservice.blob.core.windows.net/yourcontainername/
 
-To use Azure Storage, you can refer to [comment](https://github.com/dotnet-architecture/eShopOnContainers/issues/2047#issuecomment-1437084043) answered in one of the issue.
+To use Azure Storage, you can refer to the instructions answered in the [comment](https://github.com/dotnet-architecture/eShopOnContainers/issues/2047#issuecomment-1437084043) for one of the issues.
 
-## Check status of Azure Storage Account with Health Checks
+## Check the status of the Azure Storage Account with Health Checks
 
-It is possible to add status check for the Azure Storage Account inside the Catalog Web Status. In case that the status check is enabled, for the Catalog section in the WebStatus page, Azure Storage will be checked as one of the dependencies for theses APIs. To enable this check add the account name and key to the .env file for your account.
+It is possible to add a status check for the Azure Storage Account inside the Catalog Web Status. In case the status check is enabled, for the Catalog section in the WebStatus page, Azure Storage will be checked as one of the dependencies for theses APIs. To enable this check add the account name and key to the .env file for your account.
 
 For example:
 >ESHOP_AZURE_STORAGE_CATALOG_NAME=storageaccountname
