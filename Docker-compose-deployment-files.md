@@ -14,8 +14,8 @@ The root folder of the repo contains all docker-compose files (`docker-compose*.
 Make sure you have [installed](https://docs.docker.com/docker-for-windows/install/) and [configured](https://github.com/dotnet-architecture/eShopOnContainers/wiki/Windows-setup#configure-docker) docker in your environment. After that, you can run the below commands from the **/src/** directory and get started with the `eShopOnContainers` immediately.
 
 ```powershell
-docker-compose build
-docker-compose up
+docker compose build
+docker compose up
 ```
 
 You should be able to browse different components of the application by using the below URLs :
@@ -38,7 +38,7 @@ Below are the other avenues to setup `eShopOnContainers`.
 Usually these two files are using together. The standard way to start eShopOnContainers from CLI is:
 
 ```console
-docker-compose -f docker-compose.yml -f docker-compose.override.yml
+docker compose -f docker-compose.yml -f docker-compose.override.yml
 ```
 
 This will start eShopOnContainers with all containers running locally, and it is the default development environment.
@@ -48,7 +48,7 @@ This will start eShopOnContainers with all containers running locally, and it is
 * `docker-compose.prod.yml`: This file is a replacement of the `docker-compose.override.yml` but contains some configurations more suitable for a "production" environment or when you need to run the services using an external docker host.
 
 ```console
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml
+docker compose -f docker-compose.yml -f docker-compose.prod.yml
 ```
 
 When using this file the following environments variables must be set:
@@ -89,7 +89,7 @@ These files were intended to provide a fast way to start only "infrastructure" c
 * `docker-compose-external.override.yml`
 * `docker-compose-external.yml`
 
-If you want to start only certain containers use `docker-compose -f ... -f ... up container1 contaner2 containerN` as specified in [compose doc](https://docs.docker.com/compose/reference/up/)
+If you want to start only certain containers use `docker compose -f ... -f ... up container1 contaner2 containerN` as specified in [compose doc](https://docs.docker.com/compose/reference/up/)
 
 ## Other files
 

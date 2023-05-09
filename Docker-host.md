@@ -4,7 +4,7 @@ _IMPORTANT: This instructions section is in early draft state because the curren
 
 However, since there are a few folks testing it in "production" environments, out of the dev PC machine (VS2019+Docker) but in a prod. environment like Azure or a regular Docker Host, here's some important information to consider, in addition to the [CLI setup procedure detailed for Windows](Windows-setup).
 
-The "by default configuration" in the `docker-compose.override.yml` file is set with specific config so it makes it very straightforward to test the solution in a Windows PC with Visual Studio or the CLI, almost just F5 after the first configuration. But, for instance, it is using the "**10.0.75.1**" IP used by default in all "Docker for Windows" installations, so it can be used by the Identity Container for the login page when being redirected from the client apps **without you having to change any specific external IP**, etc.
+The "by default configuration" in the `docker-compose.override.yml` file is set with specific config so it makes it very straightforward to test the solution in a Windows PC with Visual Studio or the CLI, almost just F5 after the first configuration. But, for instance, it is using the "**host.docker.internal**" DNS name set up by default by all "Docker for Windows" installations, so it can be used by the Identity Container for the login page when being redirected from the client apps **without you having to change any specific external IP**, etc.
 
 However, when deploying eShopOnContainers to other environments like a real Docker Host, or simply if you want to access the apps from remote applications, there are some settings for the Identity Service that need to be changed by using the config specified at a "PRODUCTION" docker-compose file:
 
@@ -31,7 +31,7 @@ ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP=10.121.122.92
 For deploying with docker-compose, instead of doing a regular “docker-compose up” do:
 
 ```console
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
 
 So it uses the docker-compose.**prod**.yml file which uses the EXTERNAL IP or DNS name.

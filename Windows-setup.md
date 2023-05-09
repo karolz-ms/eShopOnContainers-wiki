@@ -5,8 +5,6 @@ This page covers the setup of your Windows development computer.
 - [Install Docker Desktop](#install-docker-desktop)
 - [Configure Docker Desktop](#configure-docker-desktop)
   - [Memory and CPU](#memory-and-cpu)
-  - [Shared drives](#shared-drives)
-- [Configure local networking](#configure-local-networking)
 - [Build and deploy eShopOnContainers](#build-and-deploy-eshoponcontainers)
   - [1. Create a folder for your repositories](#1-create-a-folder-for-your-repositories)
   - [2. Clone eShopOnContainer's GitHub repo](#2-clone-eshoponcontainers-github-repo)
@@ -47,41 +45,6 @@ So it's important to have enough memory RAM and CPU to Docker.
 
 >**IMPORTANT:** If you have installed Docker Desktop on a system that supports WSL 2, then WSL 2 will be enabled by default. It automatically uses the required CPU and memory resources while building and running containers. For more details refer : [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
 
-### Shared drives
-
-This step is optional but recommended, as Docker sometimes needs to access the shared drives when building, depending on the build actions.
-
-This is not really necessary when building from the CLI, but it's mandatory when building from Visual Studio to access the code to build.
-
-The drive you'll need to share depends on where you place your source code. For e.g :
-
-![](images/Docker-setup/eshoponcontainers-docker-configuration-shared-drives-latest.png)
-
->**IMPORTANT:** If you are using *Docker Desktop WSL 2 backend*, then this step is optional.
-
-## Configure local networking
-
-IMPORTANT: Ports **5100** to **5205** must be open in the local Firewall, so authentication to the STS (Security Token Service container, based on IdentityServer) can be done through the 10.0.75.1 IP, which should be available and already setup by Docker. These ports are also needed for client remote apps like Xamarin app or SPA app in a remote browser.
-
-You can manually create a rule in your local firewall in your development machine or you can just run the **add-firewall-rules-for-sts-auth-thru-docker.ps1** script available in the solution's **`deploy\windows\`** folder.
-
-![](images/Windows-setup/firewall-rule-for-eshop.png)
-
-**NOTE:** If you get the error **Unable to obtain configuration from: `http://10.0.75.1:5105/.well-known/openid-configuration`** you might need to allow the program `vpnkit` for connections to and from any computer through all ports.
-
-If you are working within a corporate VPN you might need to run this power shell command every time you power up your machine, to allow access from the `DockerNAT` network:
-
-```powershell
-Get-NetConnectionProfile | Where-Object { $_.InterfaceAlias -match "(DockerNAT)" } | ForEach-Object { Set-NetConnectionProfile -InterfaceIndex $_.InterfaceIndex -NetworkCategory Private }
-```
-Or just run the **set-dockernat-networkategory-to-private.ps1** script available in the solution's **deploy/windows** folder.
-
-> **Docker Desktop 2.2.0.0 doesn't use `DokerNAT` so the above solution will not work.**
->
->**According to [issue 5538 in the Docker Desktop for Windows repo](https://github.com/docker/for-win/issues/5538) this was by-design.**
->
->**While it gets solved or a workaround devised, it's recommended that you use the `WebSPA` client.**
-
 ## Build and deploy eShopOnContainers
 
 At this point you should be able to run eShopOnContainers from the command line. To do that, you should:
@@ -102,7 +65,7 @@ git clone https://github.com/dotnet-architecture/eShopOnContainers.git
 
 ```console
 cd eShopOnContainers\src
-docker-compose build
+docker compose build
 ```
 
 While building the docker images, you should see something like the following image, and the process should take between 10 and 30 minutes to complete, depending on the system speed.
@@ -114,7 +77,7 @@ The first time you run this command it'll take some more additional time as it n
 ### 4. Deploy to the local Docker host
 
 ```console
-docker-compose up
+docker compose up
 ```
 
 You should view something like this in the first seconds:
@@ -297,17 +260,8 @@ You should be now ready to begin learning by [exploring the code](Explore-the-co
 
 ## Additional resources
 
-- **[eShopOnContainers issue] Can't display login page on MVC app** \
-  <https://github.com/dotnet-architecture/eShopOnContainers/issues/295#issuecomment-327973650>
-  
-- **[docs.microsoft.com issue] Configuring Windows vEthernet Adapter Networks to Properly Support Docker Container Volumes** \
-  <https://github.com/dotnet/docs/issues/11528#issuecomment-486662817>
-
-- **[eShopOnContainers PR] Add Power Shell script to set network category to private for DockerNAT** \
-  <https://github.com/dotnet-architecture/eShopOnContainers/pull/1019>
-
 - **Troubleshoot Visual Studio development with Docker (Networking)** \
-  <https://docs.microsoft.com/en-us/visualstudio/containers/troubleshooting-docker-errors?view=vs-2019#errors-specific-to-networking-when-debugging-your-application>
+  <https://docs.microsoft.com/en-us/visualstudio/containers/troubleshooting-docker-errorserrors-specific-to-networking-when-debugging-your-application>
   
 - **[eShopOnContainers issue] Projects won't load in Visual Studio** \
   https://github.com/dotnet-architecture/eShopOnContainers/issues/1013#issuecomment-488664792

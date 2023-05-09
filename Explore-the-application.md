@@ -20,11 +20,11 @@ You should see the MVC application like in the following screenshot:
 
 ### Authenticating and creating an order on the Web MVC app
 
-When you try the Web MVC application by using the url <http://host.docker.internal:5100>, you'll be able to test the home page which is also the catalog page. But if you want to add articles to the basket you need to login first at the login page which is handled by the STS microservice/container (Security Token Service). At this point, you could register your own user/customer or you can also use a convenient default user/customer named **demoUser@microsoft.com** so you don't need to register your own user and it'll be easier to explore.
-The credentials for this demo user are:
+When you try the Web MVC application by using the url <http://host.docker.internal:5100>, you'll be able to test the home page which is also the catalog page. But if you want to add articles to the basket you need to login first at the login page which is handled by the STS microservice/container (Security Token Service). At this point, you could register your own user/customer or you can also use one of the default users/customers, so you don't need to register your own user, and it'll be easier to explore.
+The credentials for default users are:
 
-- User: **demouser@microsoft.com**
-- Password: **Pass@word1**
+- User: **alice** or **bob**
+- Password: **Pass123$**
 
 Below you can see the login page to provide those credentials from the MVC application.
 
@@ -32,7 +32,7 @@ Below you can see the login page to provide those credentials from the MVC appli
 
 ## SPA Web app
 
-While having the containers running, open a browser and type `http://host.docker.internal:5104/` and hit enter.
+While having the containers running, open a browser and type http://host.docker.internal:5104/ and hit enter.
 You should see the SPA application like in the following screenshot:
 
 ![](images/Explore-the-application/eshop-webspa-app-screenshot.png)
@@ -43,7 +43,7 @@ When logging in from the SPA application the view has a different "branding" but
 
 ## Swagger UI - REST API microservices - Catalog
 
-While having the containers running, open a browser and type `http://host.docker.internal:5101` and hit enter.
+While having the containers running, open a browser and type http://host.docker.internal:5101 and hit enter.
 You should see the Swagger UI page for that microservice that allows you to test the Web API, like in the following screenshot:
 
 ![](images/Explore-the-application/swagger-catalog-1.png)
@@ -81,21 +81,21 @@ By default, the Xamarin app shows fake data from mock-services. In order to real
 Once the containers are deployed, you should be able to access any of the services in the following URLs or connection string, from your dev machine:
 
 - Web apps
-  - Web MVC: <http://localhost:5100>
-  - Web SPA: <http://localhost:5104>
-  - Web Status: <http://localhost:5107>
+  - Web MVC: <http://host.docker.internal:5100>
+  - Web SPA: <http://host.docker.internal:5104>
+  - Web Status: <http://host.docker.internal:5107>
 - Microservices
-  - Catalog microservice: <http://localhost:5101> (Not secured)
-  - Ordering microservice: <http://localhost:5102> (Requires login - Click on Authorize button)
-  - Basket microservice: <http://localhost:5103> (Requires login - Click on Authorize button)
-  - Identity microservice: <http://localhost:5105> (View "discovery document")
+  - Catalog microservice: <http://host.docker.internal:5101> (Not secured)
+  - Ordering microservice: <http://host.docker.internal:5102> (Requires login - Click on Authorize button)
+  - Basket microservice: <http://host.docker.internal:5103> (Requires login - Click on Authorize button)
+  - Identity microservice: <http://host.docker.internal:5105> (View "discovery document")
 - Infrastructure
-  - SQL Server (connect with [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) to `tcp:localhost,5433` with `User Id=sa;Password=Pass@word;` and explore databases:
+  - SQL Server (connect with [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) to `tcp:host.docker.internal,5433` with `User Id=sa;Password=Pass@word;` and explore databases:
     - Identity: `Microsoft.eShopOnContainers.Service.IdentityDb`
     - Catalog: `Microsoft.eShopOnContainers.Services.CatalogDb`
     - Marketing: `Microsoft.eShopOnContainers.Services.MarketingDb`
     - Ordering: `Microsoft.eShopOnContainers.Services.OrdeingDb`
     - Webhooks: `Microsoft.eShopOnContainers.Services.WebhooksDb`
-  - Redis (Basket data): install and run [redis-commander](https://www.npmjs.com/package/redis-commander) and explore in <http://localhost:8081/>
-  - RabbitMQ (Queue management): <http://10.0.75.1:15672/> (login with username=guest, password=guest)
-  - Seq (Logs collector): <http://10.0.75.1:5340>
+  - Redis (Basket data): install and run [redis-commander](https://www.npmjs.com/package/redis-commander) and explore in <http://host.docker.internal:8081/>
+  - RabbitMQ (Queue management): <http://host.docker.internal:15672/> (login with username=guest, password=guest)
+  - Seq (Logs collector): <http://host.docker.internal:5340>
